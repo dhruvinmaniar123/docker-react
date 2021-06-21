@@ -1,0 +1,13 @@
+sudo: required
+#hey travis we will need sudo permission access to run
+services:
+  -docker #travis will install copy of docker
+
+before_install:
+  - docker build -t dmaniar/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true dmaniar/docker-react npm run test
+
+language: generic
+
